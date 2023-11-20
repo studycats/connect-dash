@@ -1,0 +1,118 @@
+<div class="insights-module" *ngIf="!loaded">
+	<div class="loader"></div>
+</div>
+
+<div id="progress" class="insights-module" *ngIf="loaded">
+	
+	<h2>Progress</h2>
+	
+	<div id="word-confidence" class="insights-inner-module">
+		<h3 class="inner-module-title">Word confidence</h3>
+
+		<ng-container *ngIf="!(wordCount$ | async)">
+			<p class="alert-message">Check back after {{ displayName$ | async}} has played some games!</p>
+		</ng-container>
+		<ng-container *ngIf="(wordCount$ | async)">
+		    <div class="chart" *ngIf="(wordCount$ | async); else loading">
+			<div class="word-score big">
+				<span class="bar ok"
+				      [ngStyle]="{'width': (wordConfidence$ | async) + '%' } ">
+					<span class="score-text">
+						<strong>{{ wordConfidence$ | async | number:'1.0-0' }}</strong>%
+					</span>
+			    </span>
+			</div>
+			<div class="score-line">
+				
+				<div class="line-marker line-0">
+					<span class="line"></span>
+					<span class="value">0%</span>
+				</div>
+				
+				<div class="line-marker line-10">
+					<span class="line"></span>
+					<span class="value">10%</span>
+				</div>
+				
+				<div class="line-marker line-20">
+					<span class="line"></span>
+					<span class="value">20%</span>
+				</div>
+				
+				<div class="line-marker line-25">
+					<span class="line"></span>
+					<span class="value">25%</span>
+				</div>
+				
+				<div class="line-marker line-30">
+					<span class="line"></span>
+					<span class="value">30%</span>
+				</div>
+				
+				<div class="line-marker line-40">
+					<span class="line"></span>
+					<span class="value">40%</span>
+				</div>
+				
+				<div class="line-marker line-50">
+					<span class="line"></span>
+					<span class="value">50%</span>
+				</div>
+				
+				<div class="line-marker line-60">
+					<span class="line"></span>
+					<span class="value">60%</span>
+				</div>
+				
+				<div class="line-marker line-70">
+					<span class="line"></span>
+					<span class="value">70%</span>
+				</div>
+				
+				<div class="line-marker line-75">
+					<span class="line"></span>
+					<span class="value">75%</span>
+				</div>
+				
+				<div class="line-marker line-80">
+					<span class="line"></span>
+					<span class="value">80%</span>
+				</div>
+				
+				<div class="line-marker line-90">
+					<span class="line"></span>
+					<span class="value">90%</span>
+				</div>
+				
+				<div class="line-marker line-100">
+					<span class="line"></span>
+					<span class="value">100%</span>
+				</div>
+			
+			</div>
+			<!-- <p class="delta"><strong class="up">+ 4%</strong> from last week</p> -->
+		    </div>
+		</ng-container>
+
+		<ng-template #loading>
+		    <div class="spinner"></div>				
+	    </ng-template>
+		
+	</div>
+	
+	<div id="word-count" class="insights-inner-module">
+		<ng-container *ngIf="(displayName$ | async); else loading">
+
+			<h3 class="inner-module-title">{{ displayName$ | async }}'s word count</h3>
+			<div class="count">{{ wordCount$ | async }}</div>
+			
+			<a class="button main-cta" [routerLink]="['..' , 'words']">All {{ displayName$ | async}}'s words</a>
+
+		</ng-container>
+		<ng-template #loading>
+		    <div class="spinner"></div>				
+	    </ng-template>
+		<!-- <p class="delta"><strong class="up">+ 15</strong> from last week</p> -->
+	</div>
+	
+</div>

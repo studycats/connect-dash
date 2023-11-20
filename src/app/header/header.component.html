@@ -1,0 +1,50 @@
+<div class="connect-header">
+
+    <div class="container">
+        
+    <div class="sc-logo"></div>
+        
+        <div class="student-details group">
+            <img class="app-icon" src="assets/icon-FE.png" />
+
+            <div class="student-title">
+                <h2 class="name">{{ displayName$ | async }}</h2>
+                
+                <!-- hub isn't linked up yet-->
+                <!-- <div class="student-status">
+                    <span class="status-light live"></span>
+                    <span class="status-message"> is playing Fun English online now</span>
+                </div> -->
+            </div>
+
+        </div>
+        
+    <ul id="connect-tabs" class="group">
+        <li class="insights"
+            [ngClass]="{'current' : selectInsightsTab | async} ">
+            <a [routerLink]="['/insights']">
+                <span class="tab-name">Insights</span>
+            </a>
+        </li>
+        <li class="curriculum"
+            [ngClass]="{'current' : selectCurriculumTab | async} ">
+            <a [routerLink]="['/curriculum']">
+                <span class="tab-name">Curriculum</span>
+            </a>
+        </li>
+        <li class="words"
+            [ngClass]="{'current' : selectWordsTab | async} ">
+            <a [routerLink]="['/words']">
+                <span class="tab-name">Words</span>
+            </a>
+        </li>
+        <!-- <li class="packs"
+            [ngClass]="{'current' : selectResourcesTab | async} ">
+            <a [routerLink]="['..' , 'resources']">
+                <span class="tab-name">Resources</span>
+            </a>
+        </li> -->
+    </ul>
+
+    </div>
+</div>

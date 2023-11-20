@@ -1,0 +1,38 @@
+/* 12 column grid - based on 1194px width - column width 72px, gutter 30px*/
+ 
+
+.container {
+	width:92%;
+	margin:0 auto;
+	position:relative;
+	
+	@include respond-to(tablet) { 
+    	width:90%;
+    }
+    
+    @include respond-to(desktop) { 
+    	width:86%;
+    }
+}
+
+@mixin grid-col {
+	float:left;
+	box-sizing: border-box;
+}
+
+/* 12 column grid - 7.05% column / 1.4% gutter */
+
+$col1: 6%;
+$col2: 14.5%;
+$col3: 23%;
+$col4: 31.5%;
+$col5: 40%;
+$col6: 48.5%;
+$col7: 57%;
+$col8: 65.5%;
+$col9: 74%;
+$col10: 82.5%;
+$col11: 91%;
+$col12: 99.5%;
+
+$gutter: 2.5%;

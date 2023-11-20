@@ -1,0 +1,381 @@
+<div class="connect-content container">
+	
+	<div class="unit-header">
+		
+		<a class="back-arrow" [routerLink]="['../']"><img src="assets/arrow-back.png" alt="arrow-back" /></a>
+			
+		<div class="unit-details">
+		
+			<div class="unit-title">
+
+				<h1> {{ unitName | titlecase}}</h1>
+				<p class="last-played">Last played: 12 Feb 2021</p>
+			</div>
+				<div class="unit-marker">
+					<ng-container *ngIf="!loader">
+						<div id="circle-loader" class="loader"></div>
+					</ng-container>
+					<div class="unit-circle" *ngIf="loader">
+					    <img class="unit-icon" src="assets/units/colors.png" />
+					    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+					     <g>
+					      <circle class="bg" r="57.2" cy="60" cx="60"/>
+					      <circle class="marker" r="57.2" cy="60" cx="60"
+					              [attr.stroke-dashoffset] = "(score$ | async)"  />
+					     </g>
+					    </svg>
+					</div>
+				</div>
+
+				<span class="progress" 
+				      *ngIf="loader"> {{ score$ | async }} % <em>complete</em></span>
+				
+		</div>
+		
+	</div>
+	
+	<section id="unit-words" class="unit-content-type" (click)='showWordsContent()'>
+		<h2 class="module-toggle-bar">Words 
+			<span class="toggle-arrow"
+			      [ngClass]="{'open' : showWords , 'hide' : !showWords }">
+			</span>
+		</h2>
+		
+		<div class="unit-learning-content" 
+		     [ngClass]="{'open' : showWords , 'hide' : !showWords }">
+		
+			<div id="unit-word-scores" class="unit-inner-module show">
+			    <ng-container *ngIf="!loader">
+			    	<div class="loader"></div>
+			    </ng-container>
+				<div class="unit-score-chart" *ngIf="loader">
+					
+					<div class="score-grid" *ngIf="(words$ | async)">
+						
+						<div class="line-marker line-0">
+							<span class="line"></span>
+							<span class="value">0%</span>
+						</div>
+						
+						<div class="line-marker line-10">
+							<span class="line"></span>
+							<span class="value">10%</span>
+						</div>
+						
+						<div class="line-marker line-20">
+							<span class="line"></span>
+							<span class="value">20%</span>
+						</div>
+						
+						<div class="line-marker line-25">
+							<span class="line"></span>
+							<span class="value">25%</span>
+						</div>
+						
+						<div class="line-marker line-30">
+							<span class="line"></span>
+							<span class="value">30%</span>
+						</div>
+						
+						<div class="line-marker line-40">
+							<span class="line"></span>
+							<span class="value">40%</span>
+						</div>
+						
+						<div class="line-marker line-50">
+							<span class="line"></span>
+							<span class="value">50%</span>
+						</div>
+						
+						<div class="line-marker line-60">
+							<span class="line"></span>
+							<span class="value">60%</span>
+						</div>
+						
+						<div class="line-marker line-70">
+							<span class="line"></span>
+							<span class="value">70%</span>
+						</div>
+						
+						<div class="line-marker line-75">
+							<span class="line"></span>
+							<span class="value">75%</span>
+						</div>
+						
+						<div class="line-marker line-80">
+							<span class="line"></span>
+							<span class="value">80%</span>
+						</div>
+						
+						<div class="line-marker line-90">
+							<span class="line"></span>
+							<span class="value">90%</span>
+						</div>
+						
+						<div class="line-marker line-100">
+							<span class="line"></span>
+							<span class="value">100%</span>
+						</div>
+					
+					</div>
+					
+					<div class="score-list">
+			            <ng-container *ngIf="(words$ | async) as word ; else loading">
+
+						    <ng-container *ngFor="let word of (words$ | async)">
+						    	<div class="score good">
+						    		<span class="icon"><img src="assets/vocab/{{ word.name }}.png" /></span>
+						    		<span class="score-bar"
+						    		      [ngStyle]="{'width': word.score + '%' } "></span>
+						    		<!-- <h4>{{ word.name }} - {{ word.score }}</h4> -->
+						    		<h4>{{ word.name }}</h4>
+						    	</div>
+						    </ng-container>
+						</ng-container>
+
+						<ng-template #loading>
+							<div class="spinner"></div>				
+						</ng-template>
+
+					</div>
+					
+				</div>
+			
+			</div>
+			
+			<div id="unit-word-activity" class="unit-inner-module">
+				
+				<h3>Activities</h3>
+				
+				<div class="activity-list">
+					
+					<div class="activity" data-fancybox data-src="#Buckets" >
+						<img class="icon" src="assets/activities/colors_colors_buckets@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-3.png" />
+						<h4>Buckets</h4>
+						
+						<div id="Buckets" class="activity-info-popup">
+							<img class="screenshot" src="assets/activities/colors_colors_buckets-screenshot.png" />	
+							<div class="playcount"><span>25</span>plays</div>
+							<h4>Buckets</h4>
+							<p>Match the pairs of colours.</p>
+							<a class="button" href="#">Play this activity</a>
+							<img class="close-button" src="assets/button-close-red.png" />
+						</div>
+						
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_karaoke_hello_yellow@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-2.png" />
+						<h4>Hello yellow</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_colors_leaves@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-1.png" />
+						<h4>Leaves</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_colors_palette@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-1.png" />
+						<h4>Palette</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_colors_leaves@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-1.png" />
+						<h4>Quiz 1</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_colors_twobytwo@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Two by two</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_colors_parrot@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Pirate</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/colors_colors_buggy@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Buggy</h4>
+					</div>
+					
+					<div class="activity locked">
+						<img class="icon" src="assets/activities/colors_colors_twobytwo@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>I like purple</h4>
+					</div>
+					
+					<div class="activity locked">
+						<img class="icon" src="assets/activities/colors_colors_memory@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Quiz 2</h4>
+					</div>
+					
+					<div class="activity locked">
+						<img class="icon" src="assets/activities/colors_colors_table@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Table</h4>
+					</div>
+					
+					<div class="activity locked">
+						<img class="icon" src="assets/activities/colors_colors_teacher@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Teacher</h4>
+					</div>
+					
+					<div class="activity locked">
+						<img class="icon" src="assets/activities/colors_colors_search@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-0.png" />
+						<h4>Exam</h4>
+					</div>
+					
+					
+					
+				</div>
+					
+			</div>
+		
+		</div>
+	
+	</section>
+	
+	<section id="unit-letters" class="unit-content-type" (click)='showLettersContent()'>
+		
+		<h2 class="module-toggle-bar">Letters 
+			<span class="toggle-arrow"
+			      [ngClass]="{'open' : showLetters , 'hide' : !showLetters }">
+			</span>
+		</h2>
+		
+		<div class="unit-learning-content"
+		     [ngClass]="{'open' : showLetters , 'hide' : !showLetters }">
+		
+			<div id="unit-word-scores" class="unit-inner-module">
+			
+				<div class="unit-score-chart">
+					
+					<div class="score-grid">
+						
+						<div class="line-marker line-0">
+							<span class="line"></span>
+							<span class="value">0%</span>
+						</div>
+						
+						<div class="line-marker line-10">
+							<span class="line"></span>
+							<span class="value">10%</span>
+						</div>
+						
+						<div class="line-marker line-20">
+							<span class="line"></span>
+							<span class="value">20%</span>
+						</div>
+						
+						<div class="line-marker line-25">
+							<span class="line"></span>
+							<span class="value">25%</span>
+						</div>
+						
+						<div class="line-marker line-30">
+							<span class="line"></span>
+							<span class="value">30%</span>
+						</div>
+						
+						<div class="line-marker line-40">
+							<span class="line"></span>
+							<span class="value">40%</span>
+						</div>
+						
+						<div class="line-marker line-50">
+							<span class="line"></span>
+							<span class="value">50%</span>
+						</div>
+						
+						<div class="line-marker line-60">
+							<span class="line"></span>
+							<span class="value">60%</span>
+						</div>
+						
+						<div class="line-marker line-70">
+							<span class="line"></span>
+							<span class="value">70%</span>
+						</div>
+						
+						<div class="line-marker line-75">
+							<span class="line"></span>
+							<span class="value">75%</span>
+						</div>
+						
+						<div class="line-marker line-80">
+							<span class="line"></span>
+							<span class="value">80%</span>
+						</div>
+						
+						<div class="line-marker line-90">
+							<span class="line"></span>
+							<span class="value">90%</span>
+						</div>
+						
+						<div class="line-marker line-100">
+							<span class="line"></span>
+							<span class="value">100%</span>
+						</div>
+					
+					</div>
+					
+					<div class="score-list">
+						
+						<div class="score good">
+							<span class="icon"><img src="assets/vocab/red.png" /></span>
+							<span class="score-bar" style="width:90%;"></span>
+							<h4>A</h4>
+						</div>
+						
+						<div class="score ok">
+							<span class="icon"><img src="assets/vocab/blue.png" /></span>
+							<span class="score-bar" style="width:65%;"></span>
+							<h4>B</h4>
+						</div>
+						
+					</div>
+					
+				</div>
+			
+			</div>
+			
+			<div id="unit-word-activity" class="unit-inner-module">
+				
+				<h3>Activities</h3>
+				
+				<div class="activity-list">
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/letters_icon_traceA@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-3.png" />
+						<h4>Tracing A</h4>
+					</div>
+					
+					<div class="activity">
+						<img class="icon" src="assets/activities/letters_icon_traceB@2x.png" />
+						<img class="rank" src="assets/activities/star-rank-2.png" />
+						<h4>Tracing B</h4>
+					</div>
+
+				</div>
+					
+			</div>
+		
+		</div>
+	
+	</section>
+		
+	
+</div>

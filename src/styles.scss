@@ -1,1 +1,335 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+
+/*
+Theme Name: Studycat 2019 Theme
+Theme URI: https://www.branigan.co.uk/
+Description: The bespoke WordPress theme designed exclusively for Studycat.
+Version: 1.0
+Author: Branigan Interactive
+Author URI: https://www.branigan.co.uk/
+*/
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	background-repeat:no-repeat;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* box sizing */
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+
+/* structure */
+@import "./connect_styles/connect-base";
+@import "./connect_styles/connect-grid";
+@import "./connect_styles/connect-header";
+
+/* modules */
+
+@import "./connect_styles/connect-word-list";
+@import "./connect_styles/connect-unit-list";
+
+
+/* sections */
+
+html {
+	font-size: 62.5%; 
+}
+
+body {
+	font-family: 'Muli', sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	@include font-size(1.6);
+	color:$black;
+	background-color:$grey-light;
+	
+	@include respond-to(tablet) {
+		@include font-size(1.8);
+	}
+
+}
+
+#site-wrapper {
+	position:relative;
+	padding-bottom:40px;
+}
+
+
+// connect content & modules
+
+.connect-content,
+.effort-content,
+.recent-content {
+	// padding-top:30px;
+	// margin-bottom: 30px;
+}
+
+.connect-module,
+.learning-packs  {
+	background-color:white;
+	border-radius:6px;
+	padding:20px 14px 24px;
+	position:relative;
+	margin-bottom:30px;
+	
+	h2 {
+		color:$blue;
+		@include font-size(2.8);
+		font-weight:700;
+		margin-bottom:0.6em;
+	}
+	
+	.module-tip {
+		color:$blue;
+		@include font-size(1.3);
+		position:absolute;
+		right:14px;
+		top:32px;
+		
+		@include respond-to(tablet) {
+			@include font-size(1.6);
+		}
+		
+		&.lower {
+			position:static;
+			text-align:right;
+		}
+	}
+	
+	.intro {
+		color:$blue;
+		margin-bottom:1.5em;
+		line-height:1.2em;
+		
+		@include respond-to(tablet) {
+			//text-align:center;
+		}
+		
+		.number-big {
+			@include font-size(2.8);
+			font-weight:700;
+		}
+	}
+	
+	.main-cta {
+		display:block;
+		width:100%;
+		margin: 3vw 0 0 auto;
+		
+		@include respond-to(tablet) { 
+		    width:60%;
+		}
+		
+		@include respond-to(desktop) { 
+		   width:40%;
+		}
+	}
+	
+}
+
+
+// insights modules 
+
+
+.insights-module {
+	// margin-bottom:60px;
+	
+	@include respond-to(widescreen) { 
+		float:left;
+		width:$col6;
+		margin-right:$gutter;
+		
+		// &:last-child {
+		// 	margin-right:0;
+		// }
+	}
+	
+	h2 {
+		@include font-size(2.8);
+		font-weight:700;
+		text-align:center;
+		border-radius:6px;
+		color:white;
+		padding:12px 0;
+		position:relative;
+		margin:0 0 16px;
+	}
+	
+	
+	.insights-inner-module {
+		background-color:white;
+		text-align:center;
+		border-radius:6px;
+		padding:20px 14px;
+		margin-bottom:12px;
+		
+		@include respond-to(tablet-landscape) { 
+			float:left;
+			width:$col6;
+			margin-right:$gutter;
+		  margin-bottom: 60px;
+
+			height:320px;
+			
+			&:last-child {
+				margin-right:0;
+			}
+			
+		}
+		
+		@include respond-to(widescreen) { 
+			height:290px;
+		}
+		
+		
+		.inner-module-title {
+			@include font-size(2.0);
+			font-weight:700;
+			margin:0 0 12px;
+			
+			@include respond-to(widescreen) { 
+				margin:0 0 24px;
+			}
+		}
+		
+		h3 + p {
+			margin:0 0 20px;
+		}
+		
+		.chart {
+			
+			.dummy {
+				width:100%;
+				height:auto;
+			}
+			
+		}
+		
+		.main-cta {
+			width:100%;
+			@include font-size(1.6);
+			
+			@include respond-to(tablet) { 
+		    	width:75%;
+		    	margin:0 auto;
+		    }
+		    
+		    @include respond-to(widescreen) { 
+				width:100%;
+			}
+		}
+	}
+}
+
+
+// .spinner {
+//   border: 8px solid $silver;
+//   border-radius: 50%;
+//   border-top: 8px solid $blue;
+//   width: 100px;
+//   height: 100px;
+//   -webkit-animation: loading .8s linear infinite; /* Safari */
+//   animation: loading .8s linear infinite;
+
+//   margin: 50px auto;
+// }
+
+// /* Safari */
+// @-webkit-keyframes loading {
+//   0% { -webkit-transform: rotate(0deg); }
+//   100% { -webkit-transform: rotate(360deg); }
+// }
+
+// @keyframes loading {
+//   0% { transform: rotate(0deg); }
+//   100% { transform: rotate(360deg); }
+// }
+
+.loader {
+	position: relative;
+	// background-color: rgb(235, 235, 235);
+	background-color: #DDD;
+	width: 100%;
+	// height: 100%;
+	overflow: hidden;
+	border-radius: 4px;
+	margin-bottom: 4px;
+}
+
+.loader::after {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 300px;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4), transparent);
+    animation: loading 1s infinite;
+}
+
+
+@keyframes loading {
+	100% {
+		transform:  translateX(100%);
+	}
+}
+
+// root
+$assetPath : '../../assets'
+

@@ -1,0 +1,15 @@
+@import '../../styles.scss';
+
+
+.chart-container {
+	display: block;
+	margin-bottom: 60px;
+}
+
+.effort-content {
+	margin: 30px auto 60px;
+	@include respond-to(desktop) {  
+	    min-height: 300px;
+	}
+
+}

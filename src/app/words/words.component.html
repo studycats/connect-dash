@@ -1,0 +1,47 @@
+<div class="container">
+	<div class="loader" *ngIf="!loaded"></div>
+</div>
+
+<div class="container connect-content" *ngIf="loaded">
+
+	<section id="vocab-words" class="connect-module words-module">
+
+		<h2>Vocabulary</h2>
+		<!-- <p class="module-tip">Tap to hear the word.</p> -->
+
+		<div class="sortby-options">
+			<p class="title">Sort by:</p>
+			<span class="button-small" [ngClass]="{'current': sortBy === 'date'}" id="sortby-date"
+				(click)="sortBy = 'date'">Most recent</span>
+			<span class="button-small" [ngClass]="{'current': sortBy === 'alpha'}" id="sortby-az"
+				(click)="sortBy = 'alpha'">A-Z</span>
+			<span class="button-small" [ngClass]="{'current': sortBy === 'p'}" id="sortby-confidence"
+				(click)="sortBy = 'p'">Confidence</span>
+		</div>
+
+		<ng-container *ngIf="!(words$ | async)?.length">
+			<p class="alert-message">Kid needs to play some games, check back later!</p>
+		</ng-container>
+
+		<div class="words-list" *ngIf="(words$ | async)?.length">
+			<ng-container *ngIf="(words$ | async) as word ; else loading">
+				<div *ngFor="let word of (words$ | async)" class="word">
+					<img src="assets/vocab/{{word.word}}.png" />
+					<h3>{{ word.displayName }}</h3>
+					<div class="word-score mini">
+						<span class="bar ok" [ngStyle]="{ 'width': (word.p || 0)+'%' }  "></span>
+					</div>
+				</div>
+			</ng-container>
+
+			<ng-template #loading>
+				<div class="spinner"></div>
+			</ng-template>
+		</div>
+
+		<a *ngIf="(words$ | async)?.length" class="button main-cta" (click)="showMoreTarget()">Show more</a>
+
+	</section>
+
+
+</div>

@@ -1,0 +1,191 @@
+//google fonts
+
+@import url('https://fonts.googleapis.com/css?family=Muli:400,700');
+
+//studycat fonts
+
+// @font-face {
+// 	font-family: 'Studycat-Regular';
+// 	src: url('fonts/Studycat-Regular.eot');
+// 	src: local('☺'), url('fonts/Studycat-Regular.woff') format('woff'), url('fonts/Studycat-Regular.ttf') format('truetype'), url('fonts/Studycat-Regular.svg') format('svg');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
+
+//Font size - Rem, Base 10 
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+// Responsive - breakpoints 
+
+$media-queries: true !default;
+
+$breakpoint-phone-landscape: 667px;
+$breakpoint-tablet: 768px;
+$breakpoint-tablet-landscape: 1020px;
+$breakpoint-desktop: 1080px;
+$breakpoint-widescreen: 1440px;
+
+@mixin respond-to($media) {
+
+@if $media-queries {
+	
+  @if $media == phone-landscape  {
+	@media only screen and (min-width: $breakpoint-phone-landscape) { @content; }
+  }
+
+  @if $media == tablet  {
+	@media only screen and (min-width: $breakpoint-tablet) { @content; }
+  }
+  
+  @if $media == tablet-landscape  {
+	@media only screen and (min-width: $breakpoint-tablet-landscape) { @content; }
+  }
+  
+  @if $media == desktop  {
+	@media only screen and (min-width: $breakpoint-desktop) { @content; }
+  }
+  
+  @if $media == widescreen  {
+	@media only screen and (min-width: $breakpoint-widescreen) { @content; }
+  }
+ 
+}
+
+}
+
+/* colors - primary */
+
+$orange: 		rgb(255,163,0);
+
+$blue:	 		rgb(68,155,239);
+
+$yellow:	 	rgb(246,190,0);
+
+// $green: rgb(47,182,147);
+/* new color  */
+$green:         rgb(69,195,143);
+
+$aqua:   		rgb(40,179,181);
+
+$purple: rgb(137,53,193);
+
+$red: rgb(250,94,104);
+
+$black:	 rgb(37,40,42);
+
+$silver: rgb(241,240,236);
+
+/* custom colours */
+
+$grey-light: rgb(245,245,245);
+$grey-mid: rgb(221,221,221);
+
+
+/* helpers */
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input,
+textarea,
+select {
+	font-family: 'muli', sans-serif;
+}
+
+
+a {
+	text-decoration:none;
+	cursor:pointer;
+	color:black;
+}
+
+
+
+.cta,
+.editor .cta {
+	font-weight:500;
+	font-size:18px;
+	display:inline-block;
+	margin:0 auto;
+	text-decoration:none;
+	transition:all ease 0.3s;
+}
+
+sup {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.3em;
+  font-size:0.75em;
+}
+
+sub { 
+  top: 0.3em; 
+}
+
+.bg-pic {
+	position:absolute;
+	width:100%;
+	height:100%;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	background-size:cover;
+	background-position: center center;
+}
+
+.button {
+	display:inline-block;
+	border-radius:20px;
+	background-color:$blue;
+	padding:8px 12px 8px;
+	@include font-size(1.8);
+	letter-spacing:0.03em;
+	color:white;
+	font-weight: 700;
+	transition:all ease 0.2s;
+	line-height:1.3em;
+	cursor:pointer;
+	text-decoration:none !important;
+	text-align:center;
+	-webkit-appearance: none;
+	
+	
+	&:hover {
+		background-color:$orange;
+	}
+	
+	
+	&.green {
+		background-color:$green;
+		
+		&:hover {
+			background-color:darken($green,10%);
+		}
+	}
+}
+
+.button-small {
+	border-radius:6px;
+	background-color:rgba($blue,0.2);
+	padding:5px 16px;
+	color:$blue;
+	cursor: pointer;
+	@include font-size(1.3);
+	
+	@include respond-to(tablet) {
+		@include font-size(1.6);
+	}
+	
+	&.current {
+		background-color:$blue;
+		color:white;
+	}
+}

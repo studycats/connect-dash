@@ -1,0 +1,319 @@
+/* connect header */
+@import '../../styles.scss';
+
+.connect-header {
+	background-color:$blue;
+	padding-top:36px;
+	color:white;
+	
+	@include respond-to(phone-landscape) { 
+		padding-top:10px;
+	}
+	
+	@include respond-to(tablet) { 
+		padding-top:16px;
+	}
+	
+	@include respond-to(desktop) { 
+		padding-top:40px;
+	}
+	
+	.sc-logo {
+		width:80px;
+		height:30px;
+		position:absolute;
+		right:0;
+		top:0;
+		background-image:url(#{$assetPath}/logo-sc-connect.png);
+		background-size:contain;
+		background-position:right top;
+		
+		@include respond-to(tablet) { 
+			width:100px;
+			height:40px;
+		}
+		
+		@include respond-to(desktop) { 
+			width:$col4;
+			max-width:360px;
+			height:54px;
+			top:-40px;
+			opacity:0.66;
+			background-image:url(#{$assetPath}/logo-sc-connect-desktop.png);
+		}
+	}
+	
+	
+	
+	.student-details {
+		
+		@include respond-to(desktop) { 
+			position:absolute;
+			width:$col4;
+			left:0;
+			top:0;
+		}
+		
+		.app-icon {
+			width:40px;
+			height:auto;
+			float:left;
+			display:block;
+			
+			@include respond-to(desktop) { 
+				width:64px;
+			}
+			
+		}
+		
+		.student-title {
+			float:left;
+			margin-left:5px;
+			position:relative;
+			 
+			h2 {
+				// will change again when the status hub working
+				// margin:-3px 0 -2px 0;
+				margin-top: 6px;
+				@include font-size(2.8);
+				font-weight:700;
+				color: #FFF;
+				
+				@include respond-to(desktop) { 
+					@include font-size(3.4);
+					margin-top:12px;
+				}
+				
+				@include respond-to(widescreen) { 
+					@include font-size(4.0);
+					margin-top:12px;
+				}
+			}
+		}
+		
+		.student-status {
+			
+			@include respond-to(desktop) { 
+				position:absolute;
+				width:calc(100% + 70px);
+				left:-70px;
+				top:70px;
+			}
+			
+			.status-light {
+				display:inline-block;
+				width:12px;
+				height:12px;
+				border-radius:100%;
+				border:2px solid white;
+				vertical-align:middle;
+				
+				@include respond-to(desktop) { 
+					width:16px;
+					height:16px;
+				}
+				
+				&.live {
+					background-color:$green;
+				}
+			}
+			
+			.status-message {
+				@include font-size(1.2);
+				vertical-align:middle;
+				
+				@include respond-to(desktop) { 
+					@include font-size(1.6);
+				}
+			}
+		}
+	}
+	
+	
+}
+
+#connect-tabs {
+	margin-top:12px;
+	height: 55px;
+	@include respond-to(tablet) {  
+	    height: 75px;
+    }
+
+	@include respond-to(desktop) { 
+		text-align:right;
+	    height: 115px;
+	}
+	
+	li {
+		float:left;
+		width:24%;
+		height: 70px;
+		margin-left:1.333%;
+		position:relative;
+		margin-bottom: 0;
+
+		@include respond-to(tablet) {  
+			// top:12px;
+		}
+		
+		@include respond-to(desktop) { 
+			float:none;
+			display:inline-block;
+			// width:$col2;
+			width: 12.5%;
+			margin-left:$gutter;
+			top:17.5px;
+		}
+		
+		&:first-child {
+			margin-left:0;
+		}
+		
+		a {
+			display:block;
+			height:70px;
+			background-color:rgba($grey-light,0.1);
+			border-top-left-radius: 6px;
+			border-top-right-radius: 6px;
+			color:white;
+			transition:background-color ease 0.3s;
+			background-position:center center;
+			
+			&:hover {
+				background-color:rgba($grey-light,0.5);
+			}
+			
+			@include respond-to(tablet) { 
+				height:90px;
+				background-position:center 8px;
+			}
+			
+			@include respond-to(desktop) { 
+				height:110px;
+				background-position:center 10px;
+			}
+			
+			.tab-name {
+				display:none;
+				color:$blue;
+				width:100%;
+				position:absolute;
+				left:0;
+				top:72px;
+				text-align:center;
+				@include font-size(1.8);
+				font-weight:700;
+				
+				@include respond-to(tablet) { 
+					display:block;
+					color:white;
+					top:50px;
+				}
+				
+				@include respond-to(desktop) { 
+					top:72.5px;
+					font-size: 20px;
+				}
+			}
+			
+		}
+
+		&.insights a,
+		&.curriculum a {
+
+			background-size:26px auto;
+			// background-size:34px auto;
+			@include respond-to(desktop) { 
+				background-size:50px auto;
+			}
+		}
+		
+		&.insights a {
+			background-image:url(#{$assetPath}/icon-insights.png);
+
+		}
+		
+		&.curriculum a {
+			background-image:url(#{$assetPath}/icon-curriculum.png);
+
+		}
+		
+		&.words a {
+			background-image:url(#{$assetPath}/icon-words.png);
+			// background-size:38px auto;
+			background-size:28px auto;
+			
+			@include respond-to(desktop) { 
+				background-size:58px auto;
+			}
+		}
+		
+		&.packs a {
+			background-image:url(#{$assetPath}/icon-packs.png);
+			background-size:40px auto;
+			
+			@include respond-to(desktop) { 
+				background-size:60px auto;
+			}
+		}
+
+
+		
+		// current tab 
+		
+		&.current {
+			
+			a { 
+				background-color:rgba($grey-light,1);
+				background-size:44px auto;
+				background-position-y: 15px;
+
+				@include respond-to(tablet) {  
+					background-size:40px auto;
+				    background-position-y: 4px;
+		        }
+
+				
+				.tab-name {
+					display:block;
+					color:$blue;
+				}
+			}
+
+			&.words a {
+                background-size:44px auto;
+				background-position:center 8px;
+				background-position-y: 15px;
+
+				@include respond-to(tablet) {  
+					background-size:40px auto;
+				    background-position-y: 4px;
+		        }
+
+				@include respond-to(desktop) { 
+				    background-size:58px auto;
+			    }
+			}
+
+			// &.insights a,
+			// &.curriculum a,
+			// &.words a,
+			// &.packs a {
+    //             background-size:46px auto;
+				// background-position:center 8px;
+
+				// @include respond-to(tablet) { 
+				//     background-size:38px auto;
+				//     background-position:center 4px;
+				// }
+
+				// @include respond-to(desktop) { 
+				//     background-size:38px auto;
+				//     background-position:center 4px;
+
+				// }
+			// }
+		}
+	}
+	
+}

@@ -1,0 +1,56 @@
+<div class="insights-module">
+	<div class="loader" *ngIf="!loaded"></div>
+</div>
+
+<div id="effort" class="insights-module group" *ngIf="loaded">
+	
+	<h2>Effort</h2>
+	
+	
+	<div id="daily-playtime" class="insights-inner-module">
+		<h3 class="inner-module-title">Daily playtime</h3>
+		<div class="chart">
+			<app-aggregates-chart></app-aggregates-chart>
+			<!-- <img class="dummy" src="assets/barchart-dummy.png" /> -->
+		</div>
+		<p>We recommend 10 mins every day!</p>
+	</div>
+	
+	<div id="latest-activity" class="insights-inner-module">
+		<h3 class="inner-module-title">Latest activities</h3>
+		<p>Tap a unit for full details</p>
+		<ng-container *ngIf="(progress$ | async); else loading">
+		    <div class="unit-list">
+			<div class="unit-tracker" *ngFor="let item of (progress$ | async)">
+				<!-- <a [routerLink]="['..' , 'unit']"> -->
+					<div class="unit-circle">
+					    <img class="unit-icon" src="assets/units/{{ item.name }}.png" />
+					    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+					     <g>
+					      <circle class="bg" r="57.2" cy="60" cx="60"/>
+					      
+					      <!--  HOW TO SET THE MARKER CIRCLE -->
+					      <!--  1. get % completion from LMS -->
+					      <!--  2. calculate % x 360 - e.g 0.75 x 360 = 270 -->
+					      <!--  3. Subtract figure from 360 - e.g. 360 - 270 = 90 -->
+					      <!--  4. Set stroke-dashoffset value to this number -->
+					      
+					      <circle class="marker" r="57.2" cy="60" cx="60" [attr.stroke-dashoffset]="360 - (item.progress * 360)" />
+					     </g>
+					    </svg>
+					</div>
+					<h3>{{ item.title }}</h3>
+				<!-- </a> -->
+			</div>
+		    </div>
+		</ng-container>
+
+		<ng-template #loading>
+		    <div class="spinner"></div>				
+	    </ng-template>
+
+		
+		<a class="button main-cta" 
+		   [routerLink]="['..' , 'curriculum']">Curriculum details</a>
+	</div>
+</div>

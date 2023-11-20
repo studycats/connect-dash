@@ -1,0 +1,51 @@
+<!-- <div class="container loader-container" *ngIf="!loaded">
+	<div class="loader"></div>
+</div> -->
+
+<div class="connect-content container">
+	
+	<div class="loader" *ngIf="!loaded"></div>
+
+	<section id="curriculum" class="connect-module" *ngIf="loaded">
+		
+		<h2>Progress</h2>
+		
+		<p class="intro">Tap a topic for more details.</p>
+		
+		<div class="unit-list">
+
+			<ng-container *ngIf="progress$ | async as progress; else loading">
+				<div class="unit-tracker" *ngFor="let item of (progress$ | async)">
+					<a [routerLink]="[ item.name ]">
+						<div class="unit-circle">
+							<img class="unit-icon" src="assets/units/{{ item.name }}.png" />
+							<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+							<g>
+							<circle class="bg" r="57.2" cy="60" cx="60"/>
+							
+							<!--  HOW TO SET THE MARKER CIRCLE -->
+							<!--  1. get % completion from LMS -->
+							<!--  2. calculate % x 360 - e.g 0.75 x 360 = 270 -->
+							<!--  3. Subtract figure from 360 - e.g. 360 - 270 = 90 -->
+							<!--  4. Set stroke-dashoffset value to this number -->
+							
+							<circle class="marker" r="57.2" cy="60" cx="60" [attr.stroke-dashoffset]="360 - (item.progress * 360)" />
+							</g>
+							</svg>
+						</div>
+						<h3>{{ item.name | titlecase }} </h3>
+						<p  *ngIf="item.progress !== 0"
+						    class="progress">{{ item.progress | percent }}</p>
+					</a>
+				</div>
+			</ng-container>
+			<ng-template #loading>
+				<div class="spinner"></div>				
+			</ng-template>
+
+		</div>
+		
+	</section>
+		
+	
+</div>
